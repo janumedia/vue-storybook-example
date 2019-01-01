@@ -2,9 +2,16 @@ import Vue from 'vue'
 import { storiesOf } from '@storybook/vue'
 //import addons
 import { linkTo } from '@storybook/addon-links'
+import { configureViewport, INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
 import Button from './Button.vue'
 import Checkbox from './Checkbox.vue'
+
+configureViewport({
+    viewports: {
+        ...INITIAL_VIEWPORTS
+    }
+})
 
 storiesOf('Button', module)
     .add('button as a template', () => ({
