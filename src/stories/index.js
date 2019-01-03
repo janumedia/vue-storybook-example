@@ -61,6 +61,17 @@ storiesOf('Input', module)
         template: '<input-text style="width: 300px; font-size:30px"/>'
     }));
 
+storiesOf('Checkbox', module)
+    .add('default', () => ({
+        template: '<checkbox fill>Default</checkbox>'
+    }))
+    .add('fill', () => ({
+        template: '<checkbox fill>Fill</checkbox>'
+    }))
+    .add('font size 30px', () => ({
+        template: '<checkbox fill style="font-size: 40px">Font size 30px</checkbox>'
+    }));
+
 storiesOf('SwitchButton', module)
     .add('default', () => ({
         template: `<switch-button></switch-button>`
