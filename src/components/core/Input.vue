@@ -101,6 +101,7 @@ export default {
 }
 
 input {
+    width: 100%;
     display: table-cell;
     padding: 0.4em 0;
     border: 0;
