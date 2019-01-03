@@ -75,6 +75,35 @@ Storybook.js for Vue example
 	 ```
 	 yarn storybook
 	 ```
+## Add Support to SCSS
+By default Storybook not support SCSS even project the created using Vue CLI support SCSS or other preprocesor CSS. This is because Storybook use different Webpack. You must extend Storybook Webpack's config by creating `webpack.config.js` inside `.storybook` directory and define SCSS or your other style loader.
+```
+//.storybook/webpack.config.js
+const path = require("path");
+
+module.exports = (baseConfig, env, defaultConfig) => {
+    defaultConfig.module.rules.push({
+        test: /\.scss$/,
+        loaders: ["style-loader", "css-loader", "sass-loader"],
+        include: path.resolve(__dirname, "../")
+    });
+    return defaultConfig;
+};
+```
+## Resolve URL (Path) Alias
+With Vue CLI each time URL started with `@` it will aliases to `<projectRoot>/src`. But since Storybook use different Webpack this URL alias will not work and your existing Vue components will not work. To fix this issue you should define URL alias setup manually by extend Storybook webpack's config.
+```
+//.storybook/webpack.config.js
+const path = require("path");
+
+module.exports = (baseConfig, env, defaultConfig) => {
+    defaultConfig.resolve.alias = {
+        ...defaultConfig.resolve.alias,
+        "@": path.resolve(__dirname, "../src")
+    };
+    return defaultConfig;
+};
+```
 
 ## Further Reading
 [Storybook Quick Start Guide](https://storybook.js.org/basics/quick-start-guide/)
