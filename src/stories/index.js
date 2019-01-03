@@ -31,8 +31,8 @@ storiesOf('Button', module)
     .add('emoji & symbol', () => ({
         template: '<custom-button>😎🌍🍺💯</custom-button>'
     }))
-    .add('font size: 20px', () => ({
-        template: '<custom-button style="font-size:40px" primary>Font Size 40px</custom-button>'
+    .add('custom font size', () => ({
+        template: '<div><custom-button style="font-size:30px" primary>30px</custom-button><br><br><custom-button style="font-size:40px" primary>40px</custom-button></div>'
     }));
 
 storiesOf('Input', module)
@@ -48,28 +48,39 @@ storiesOf('Input', module)
     .add('suffix', () => ({
         template: '<input-text suffix="km/s"/>'
     }))
-    .add('prefix with symbol', () => ({
-        template: '<input-text prefix="💲"/>'
+    .add('emoji & symbol', () => ({
+        template: `
+            <div>
+                <input-text prefix="💲"/><br><br>
+                <input-text suffix="✍️"/><br><br>
+            </div>
+        `
     }))
-    .add('suffix with emoji', () => ({
-        template: '<input-text suffix="✍️"/>'
-    }))
-    .add('prefix + suffix', () => ({
-        template: '<input-text prefix="Volume" suffix="m2"/>'
-    }))
-    .add('width: 300px', () => ({
-        template: '<input-text style="width: 300px; font-size:30px"/>'
+    .add('custom width', () => ({
+        template: '<input-text prefix="💲" suffix="✍️" style="width:300px;"/>'
     }));
 
 storiesOf('Checkbox', module)
     .add('default', () => ({
-        template: '<checkbox fill>Default</checkbox>'
+        template: `
+            <div>
+                <checkbox id="one">Default One</checkbox><br><br>
+                <checkbox id="two">Default Two</checkbox>
+            </div>`
     }))
     .add('fill', () => ({
-        template: '<checkbox fill>Fill</checkbox>'
+        template: `
+            <div>
+                <checkbox id="one" fill>Fill One</checkbox><br><br>
+                <checkbox id="two" fill>Fill Two</checkbox>
+            </div>`
     }))
-    .add('font size 30px', () => ({
-        template: '<checkbox fill style="font-size: 40px">Font size 30px</checkbox>'
+    .add('custom font size', () => ({
+        template: `
+            <div>
+                <checkbox id="one" fill style="font-size: 30px">30px</checkbox><br><br>
+                <checkbox id="two" fill style="font-size: 40px">40px</checkbox>
+            </div>`
     }));
 
 storiesOf('SwitchButton', module)
@@ -78,9 +89,6 @@ storiesOf('SwitchButton', module)
     }))
     .add('rounded', () => ({
         template: `<switch-button rounded></switch-button>`
-    }))
-    .add('rounded + extra space', () => ({
-        template: `<switch-button rounded>&nbsp;&nbsp;&nbsp;&nbsp;</switch-button>`
     }))
     .add('rounded + label', () => ({
         template: `<switch-button rounded>My Label</switch-button>`
@@ -91,6 +99,11 @@ storiesOf('SwitchButton', module)
     .add('rounded + disabled', () => ({
         template: `<switch-button rounded disabled>Disabled</switch-button>`
     }))
-    .add('rounded + font size 30px', () => ({
-        template: `<switch-button rounded style="font-size:30px"></switch-button>`
+    .add('custom font size', () => ({
+        template: `
+            <div>
+                <switch-button rounded style="font-size:20px">20px</switch-button><br><br>
+                <switch-button rounded style="font-size:40px">40px</switch-button>
+            </div>
+        `
     }));

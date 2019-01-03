@@ -14,7 +14,7 @@ export default {
     },
     computed: {
         label() {
-            if(this.$slot) return this.$slots.default[0].text;
+            if(this.$slots.default) return this.$slots.default[0].text;
             else return ""
         },
         checked: {
