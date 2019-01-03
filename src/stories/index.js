@@ -83,6 +83,32 @@ storiesOf('Checkbox', module)
             </div>`
     }));
 
+storiesOf('RadioButton', module)
+    .add('default', () => ({
+        template: `
+            <div>
+                <radio-button id="one" name="defaut-radio">Default One</radio-button><br><br>
+                <radio-button id="two" name="defaut-radio">Default Two</radio-button>
+            </div>
+        `
+    }))
+    .add('fill', () => ({
+        template: `
+            <div>
+                <radio-button id="one" name="fill-radio" fill>Fill One</radio-button><br><br>
+                <radio-button id="two" name="fill-radio" fill>Fill Two</radio-button>
+            </div>
+        `
+    }))
+    .add('custom font size', () => ({
+        template: `
+            <div>
+                <radio-button id="one" name="fill-radio" style="font-size:30px" fill>30px</radio-button><br><br>
+                <radio-button id="two" name="fill-radio" style="font-size:40px" fill>40px</radio-button>
+            </div>
+        `
+    }))
+
 storiesOf('SwitchButton', module)
     .add('default', () => ({
         template: `<switch-button></switch-button>`
