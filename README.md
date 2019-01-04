@@ -25,7 +25,7 @@ Storybook.js for Vue example
 		}
 	} 
 	```
-	 > The **-p** command refer to the port number where the Storybook will be run in your localhost.
+	 > The **-p** command refer to the port number where the Storybook will be run in your localhost.  
 	 > The **-c** command refer to the config directory
  5. Create `.storybook` directory as the config directory
  6. Create `.storybook/config.js` as config file
@@ -111,3 +111,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
 [Storybook for Vue](https://storybook.js.org/basics/guide-vue/)
 
 [Writing Stories](https://storybook.js.org/basics/writing-stories/)
+
+[Custom Webpack Config](https://storybook.js.org/configurations/custom-webpack-config/)
+
+[Using Addons](https://storybook.js.org/addons/using-addons/)
