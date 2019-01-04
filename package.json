@@ -1,6 +1,23 @@
 {
   "name": "vue-storybook-example",
+  "description": "Storybook.js Vue example based on Vue-CLI-3",
   "version": "0.1.0",
+  "author": {
+    "name": "I Nengah Januartha",
+    "email": "janumedia@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "storybook",
+    "vue",
+    "vue-cli",
+    "webpack",
+    "babel",
+    "es6",
+    "jest",
+    "ui-tests",
+    "test-framework"
+  ],
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,6 +31,7 @@
     "vue": "^2.5.21"
   },
   "devDependencies": {
+    "@storybook/addon-knobs": "^4.1.4",
     "@storybook/addon-links": "^4.1.4",
     "@storybook/addon-options": "^4.1.4",
     "@storybook/addon-storysource": "^4.1.4",

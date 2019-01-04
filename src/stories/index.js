@@ -2,6 +2,8 @@ import { storiesOf } from '@storybook/vue'
 //import addons
 import { linkTo } from '@storybook/addon-links'
 import { configureViewport, INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
+import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
+
 
 import App from '@/App'
 
@@ -139,4 +141,98 @@ storiesOf('Component|SwitchButton', module)
                 <switch-button rounded style="font-size:40px">40px</switch-button>
             </div>
         `
+    }));
+
+
+storiesOf('Addons|Knobs', module)
+    .addDecorator(withKnobs)
+    .add('Button', () => ({
+        props: {
+            label: {
+                type: String,
+                default: text('label', 'Button Label 💯')
+            },
+            rounded: {
+                type: Boolean,
+                default: select('rounded', [false, true])
+            },
+            primary: {
+                type: Boolean,
+                default: select('primary', [false, true])
+            },
+            disabled: {
+                type: Boolean,
+                default: select('disabled', [false, true])
+            },
+            style: {
+                type: String,
+                default: `font-size:${number('font-size', 16, {
+                    range: true,
+                    min: 0,
+                    max: 60,
+                    step: 5
+                })}px`
+            }
+        },
+        template: `<custom-button :style="style" :rounded="rounded" :primary="primary" :disabled="disabled">{{ label }}</custom-button>`
+    }))
+    .add('SwitchButton', () => ({
+        props: {
+            on: {
+                type: String,
+                default: text('on', 'ON')
+            },
+            off: {
+                type: String,
+                default: text('off', 'OFF')
+            },
+            rounded: {
+                type: Boolean,
+                default: select('rounded', [false, true])
+            },
+            disabled: {
+                type: Boolean,
+                default: select('disabled', [false, true])
+            },
+            style: {
+                type: String,
+                default: `font-size:${number('font-size', 16, {
+                    range: true,
+                    min: 0,
+                    max: 60,
+                    step: 5
+                })}px`
+            }
+        },
+        template: `<switch-button :style="style" :on="on" :off="off" :rounded="rounded" :disabled="disabled"></switch-button>`
+    }))
+    .add('Input', () => ({
+        props: {
+            placeholder: {
+                type: String,
+                default: text('placeholder', 'Place Holder')
+            },
+            prefix: {
+                type: String,
+                default: text('prefix', '💲')
+            },
+            suffix: {
+                type: String,
+                default: text('suffix', '℉')
+            },
+            disabled: {
+                type: Boolean,
+                default: select('disabled', [false, true])
+            },
+            style: {
+                type: String,
+                default: `font-size:${number('font-size', 16, {
+                    range: true,
+                    min: 0,
+                    max: 60,
+                    step: 5
+                })}px`
+            }
+        },
+        template: '<input-text :style="style" :placeholder="placeholder" :prefix="prefix" :suffix="suffix"/>'
     }));
