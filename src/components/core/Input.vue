@@ -101,6 +101,7 @@ export default {
 }
 
 input {
+    font-size: inherit;
     width: 100%;
     display: table-cell;
     padding: 0.4em 0;
@@ -110,6 +111,7 @@ input {
 
 .input-prefix,
 .input-suffix {
+    font-size: inherit;
     display: table-cell;
     white-space: nowrap;
 }
