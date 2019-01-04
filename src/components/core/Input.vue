@@ -111,6 +111,7 @@ input {
 .input-prefix,
 .input-suffix {
     display: table-cell;
+    white-space: nowrap;
 }
 .input-prefix {
     padding-right: 0.4em;
