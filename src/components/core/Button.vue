@@ -23,7 +23,7 @@ export default {
 @import "@/assets/css/_color.scss";
 button {
     font-size: inherit;
-    border: 1px solid $border-color;
+    border: min(0.05em, 0.05em) solid $border-color;
     display:inline-block;
     vertical-align:middle;
     text-decoration:none;
