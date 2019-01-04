@@ -68,7 +68,7 @@ button {
     }
 }
 
-button[primary] {
+button[primary]:not([disabled]) {
     border-color: $secondary;
     color: $secondary-text;
     background-color: $secondary;
