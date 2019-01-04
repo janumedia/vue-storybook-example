@@ -3,13 +3,20 @@ import { storiesOf } from '@storybook/vue'
 import { linkTo } from '@storybook/addon-links'
 import { configureViewport, INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
+import App from '@/App'
+
 configureViewport({
     viewports: {
         ...INITIAL_VIEWPORTS
     }
 })
 
-storiesOf('Button', module)
+storiesOf('Page|App', module)
+    .add('app', () => ({
+        render: h => h(App)
+    }));
+
+storiesOf('Component|Button', module)
     .add('default', () => ({
         template: '<custom-button @click="handleClick">Default Button</custom-button>',
         methods: {
@@ -35,7 +42,7 @@ storiesOf('Button', module)
         template: '<div><custom-button style="font-size:30px" primary>30px</custom-button><br><br><custom-button style="font-size:40px" primary>40px</custom-button></div>'
     }));
 
-storiesOf('Input', module)
+storiesOf('Component|Input', module)
     .add('default', () => ({
         template: '<input-text/>'
     }))
@@ -60,7 +67,7 @@ storiesOf('Input', module)
         template: '<input-text prefix="💲" suffix="✍️" style="width:300px;"/>'
     }));
 
-storiesOf('Checkbox', module)
+storiesOf('Component|Checkbox', module)
     .add('default', () => ({
         template: `
             <div>
@@ -83,7 +90,7 @@ storiesOf('Checkbox', module)
             </div>`
     }));
 
-storiesOf('RadioButton', module)
+storiesOf('Component|RadioButton', module)
     .add('default', () => ({
         template: `
             <div>
@@ -109,7 +116,7 @@ storiesOf('RadioButton', module)
         `
     }))
 
-storiesOf('SwitchButton', module)
+storiesOf('Component|SwitchButton', module)
     .add('default', () => ({
         template: `<switch-button></switch-button>`
     }))

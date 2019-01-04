@@ -702,6 +702,14 @@
     global "^4.3.2"
     prop-types "^15.6.2"
 
+"@storybook/addon-options@^4.1.4":
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-4.1.4.tgz#58765a50d7cf8c1b1ff1cf9e257ce29f8b47912e"
+  dependencies:
+    "@storybook/addons" "4.1.4"
+    core-js "^2.5.7"
+    util-deprecate "^1.0.2"
+
 "@storybook/addon-storysource@^4.1.4":
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-4.1.4.tgz#199301ac662e0e03d8e9a60837a113d69b015e93"
