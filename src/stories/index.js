@@ -3,9 +3,12 @@ import { storiesOf } from '@storybook/vue'
 import { linkTo } from '@storybook/addon-links'
 import { configureViewport, INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
-
+//
+import StoryRouter from 'storybook-vue-router'
 
 import App from '@/App'
+
+import router from '@/router'
 
 configureViewport({
     viewports: {
@@ -14,6 +17,7 @@ configureViewport({
 })
 
 storiesOf('Page|App', module)
+    .addDecorator(StoryRouter({}, router.options))
     .add('app', () => ({
         render: h => h(App)
     }));

@@ -1,17 +1,18 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="wrapper">
+    <component :is="layout">
+      <router-view/>
+    </component>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  computed: {
+    layout() {
+      return `${this.$route.meta.layout || 'default'}-layout`;
+    }
   }
 }
 </script>
@@ -24,5 +25,21 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#nav {
+  padding: 30px;
+  a {
+    font-weight: bold;
+    color: #42b983;
+    text-decoration: none;
+    padding: 0 0.5em;
+    &:hover,
+    &.router-link-exact-active {
+      color: #2c3e50;
+    }
+  }
+  a:not(:last-of-type) {
+    border-right: 2px solid #42b983;
+  }
 }
 </style>
