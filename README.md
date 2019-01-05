@@ -104,7 +104,41 @@ module.exports = (baseConfig, env, defaultConfig) => {
     return defaultConfig;
 };
 ```
-
+## Vue-Router
+To enable `vue-router` you can implement `addDecorator` and use [storybook-vue-router](https://github.com/gvaldambrini/storybook-router/tree/master/packages/vue) with the following steps:
+1. Add `storybook-vue-router`
+   ```
+   yarn add -D storybook-vue-router
+   ```
+2. Add `@storybook/addon-actions` as `storybook-vue-router` require this addons.  
+   >**Note:** If you're already installed it you can jump to step 4
+   ```
+   yarn add -D @storybook/addon-actions
+   ```
+3. Register `@storybook/addon-actions` inside `.storybook/addons.js`
+   ```
+    @storybook/addon-actions/register
+   ```
+4. Use `storybook-vue-router` as decorator in your stories
+   ```
+   // .src/stories/index.js
+   
+   import { storiesOf } from '@storybook/vue'
+   import StoryRouter from 'storybook-vue-router'
+   
+   import App from '@/App'
+   
+   //import your router
+   import router from '@/router'
+   
+   storiesOf('App', module)
+    .addDecorator(StoryRouter({}, router.options))
+    .add('app', () => ({
+        render: h => h(App)
+    }));
+   
+   ```
+5. Read [storybook-vue-router-guide](https://github.com/gvaldambrini/storybook-router/blob/master/packages/vue/README.md)
 ## Further Reading
 [Storybook Quick Start Guide](https://storybook.js.org/basics/quick-start-guide/)
 
