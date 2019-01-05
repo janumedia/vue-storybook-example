@@ -18,7 +18,7 @@ configureViewport({
 
 storiesOf('Page|App', module)
     .addDecorator(StoryRouter({}, router.options))
-    .add('app', () => ({
+    .add('app with router', () => ({
         render: h => h(App)
     }));
 
