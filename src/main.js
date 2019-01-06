@@ -3,11 +3,13 @@ import App from './App.vue'
 import router from './router'
 
 import DefaultLayout from './layouts/default'
+import NoNavigationLayout from './layouts/no-navigation'
 
 Vue.config.productionTip = false
 
 //register layouts
 Vue.component('default-layout', DefaultLayout);
+Vue.component('no-nav-layout', NoNavigationLayout);
 
 //register async components
 Vue.component('custom-button', () => import(/* webpackChunkName: "custom-button" */ '@/components/core/Button'));

@@ -4,6 +4,7 @@ import { withOptions } from '@storybook/addon-options';
 import Vue from 'vue'
 
 import DefaultLayout from '@/layouts/default'
+import NoNavigationLayout from '@/layouts/no-navigation'
 
 import Button from '@/components/core/Button'
 import Input from '@/components/core/Input'
@@ -13,6 +14,7 @@ import SwitchButton from '@/components/core/SwitchButton'
 
 //register layouts
 Vue.component('default-layout', DefaultLayout);
+Vue.component('no-nav-layout', NoNavigationLayout);
 
 //register components
 Vue.component('custom-button', Button);

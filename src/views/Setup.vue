@@ -17,6 +17,8 @@
             <br>
             <br>
             <custom-button rounded primary>Save Setup</custom-button>
+            <br>
+            <br>
         </div>
     </div>
 </template>
