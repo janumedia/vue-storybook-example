@@ -17,16 +17,19 @@ Storybook.js for Vue example
 	 ```
 	 yarn add --dev babel-preset-vue
 	 ```
- 4. Add Storybook run script to your `package.json`
+ 4. Add Storybook run and build scripts to your `package.json`
 	 ```
 	{
 		"scripts": {
-			"storybook": "start-storybook -p 9001 -c .storybook"
+			"storybook": "start-storybook -p 9001 -c .storybook -s public",
+			"storybook:build": "build-storybook -c .storybook -o .out -s public"
 		}
 	} 
 	```
-	 > The **-p** command refer to the port number where the Storybook will be run in your localhost.  
-	 > The **-c** command refer to the config directory
+	 > The **-p** command refer to the port number where the Storybook will be run.  
+	 > The **-c** command refer to the config directory.  
+	 > The **-o** command refer to directory where to store built files.  
+	 > The **-s** command refer to directory to load static / public files
  5. Create `.storybook` directory as the config directory
  6. Create `.storybook/config.js` as config file
 	 ```
@@ -71,10 +74,15 @@ Storybook.js for Vue example
 		 <button><slot/></button>
 	 </template>
 	 ``` 
- 10. Run your Storybook
+10. Run your Storybook
 	 ```
 	 yarn storybook
 	 ```
+11. To build your Storybook
+	 ```
+	 yarn storybook:build
+	 ```
+	 > `.out` directory will be created with built files and ready to upload to your hosting server.
 ## Add Support to SCSS
 By default Storybook not support SCSS even project the created using Vue CLI support SCSS or other preprocesor CSS. This is because Storybook use different Webpack. You must extend Storybook Webpack's config by creating `webpack.config.js` inside `.storybook` directory and define SCSS or your other style loader.
 ```
