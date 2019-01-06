@@ -7,6 +7,7 @@ import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs
 import StoryRouter from 'storybook-vue-router'
 
 import App from '@/App'
+import Welcome from './Welcome'
 
 import router from '@/router'
 
@@ -15,6 +16,11 @@ configureViewport({
         ...INITIAL_VIEWPORTS
     }
 })
+
+storiesOf('Page|Welcome', module)
+    .add('welcome', () => ({
+        render: h => h(Welcome)
+    }));
 
 storiesOf('Page|App', module)
     .addDecorator(StoryRouter({}, router.options))
