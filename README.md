@@ -1,7 +1,10 @@
 # vue-storybook-example
 Storybook.js for Vue example
 
+[Live Demo](https://vue-storybook-example.netlify.com)
+
 ## Step by step setup
+
 > This Storybok example is based on Vue CLI 3.0, some libraries required by Storybook are already installed by Vue CLI except  `babel-preset-vue` that you should install it manually.
 
  1. Create Vue project using Vue CLI
@@ -83,7 +86,9 @@ Storybook.js for Vue example
 	 yarn storybook:build
 	 ```
 	 > `.out` directory will be created with built files and ready to upload to your hosting server.
+
 ## Add Support to SCSS
+
 By default Storybook not support SCSS even project the created using Vue CLI support SCSS or other preprocesor CSS. This is because Storybook use different Webpack. You must extend Storybook Webpack's config by creating `webpack.config.js` inside `.storybook` directory and define SCSS or your other style loader.
 ```
 //.storybook/webpack.config.js
@@ -98,7 +103,9 @@ module.exports = (baseConfig, env, defaultConfig) => {
     return defaultConfig;
 };
 ```
+
 ## Resolve URL (Path) Alias
+
 With Vue CLI each time URL started with `@` it will aliases to `<projectRoot>/src`. But since Storybook use different Webpack this URL alias will not work and your existing Vue components will not work. To fix this issue you should define URL alias setup manually by extend Storybook webpack's config.
 ```
 //.storybook/webpack.config.js
@@ -113,6 +120,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
 };
 ```
 ## Vue-Router
+
 To enable `vue-router` you can implement `addDecorator` and use [storybook-vue-router](https://github.com/gvaldambrini/storybook-router/tree/master/packages/vue) with the following steps:
 1. Add `storybook-vue-router`
    ```
@@ -142,8 +150,10 @@ To enable `vue-router` you can implement `addDecorator` and use [storybook-vue-r
     }));
    
    ```
-5. Read [storybook-vue-router-guide](https://github.com/gvaldambrini/storybook-router/blob/master/packages/vue/README.md)
+4. Read [storybook-vue-router-guide](https://github.com/gvaldambrini/storybook-router/blob/master/packages/vue/README.md)
+
 ## Further Reading
+
 [Storybook Quick Start Guide](https://storybook.js.org/basics/quick-start-guide/)
 
 [Storybook for Vue](https://storybook.js.org/basics/guide-vue/)
