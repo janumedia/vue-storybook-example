@@ -119,15 +119,11 @@ To enable `vue-router` you can implement `addDecorator` and use [storybook-vue-r
    yarn add -D storybook-vue-router
    ```
 2. Add `@storybook/addon-actions` as `storybook-vue-router` require this addons.  
-   >**Note:** If you're already installed it you can jump to step 4
+   >**Note:** If you're already installed it you can jump to next step
    ```
    yarn add -D @storybook/addon-actions
    ```
-3. Register `@storybook/addon-actions` inside `.storybook/addons.js`
-   ```
-    @storybook/addon-actions/register
-   ```
-4. Use `storybook-vue-router` as decorator in your stories
+3. Use `storybook-vue-router` as decorator in your stories
    ```
    // .src/stories/index.js
    
