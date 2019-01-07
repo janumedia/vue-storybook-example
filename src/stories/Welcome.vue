@@ -1,7 +1,7 @@
 <template>
   <div class="welcome">
-    <img alt="Vue logo" src="@/assets/logo.png">
-    <h1>Welcome to Vue Storybook Example</h1>
+    <img alt="Vue logo" src="@/assets/storybook+vue.png">
+    <h1>Welcome to Storybook + Vue Example</h1>
     <p>
       For a guide and recipes on how to configure / customize Storybook Vue,<br>
       check the following links or refer to
@@ -55,6 +55,9 @@ li {
 }
 a {
   color: #42b983;
+}
+img {
+  width: 80%;
 }
 @media screen and (min-width: 500px) {
     li {
