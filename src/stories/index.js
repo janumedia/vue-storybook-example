@@ -166,6 +166,7 @@ storiesOf('Addons|Actions', module)
     .add('Checkbox: v-model', () => ({
         template: `
             <div>
+                Select your favotite fruit:<br><br>
                 <checkbox id="manggo" v-model="listValues" fill>Manggo</checkbox><br><br>
                 <checkbox id="orange" v-model="listValues" fill>Orange</checkbox>
             </div>`,

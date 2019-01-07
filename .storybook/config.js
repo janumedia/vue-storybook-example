@@ -12,6 +12,9 @@ import Checkbox from '@/components/core/Checkbox'
 import RadioButton from '@/components/core/RadioButton'
 import SwitchButton from '@/components/core/SwitchButton'
 
+//setup preview styles
+import '@/assets/css/_normalize.scss'
+
 //register layouts
 Vue.component('default-layout', DefaultLayout);
 Vue.component('no-nav-layout', NoNavigationLayout);
