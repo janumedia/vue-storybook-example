@@ -19,12 +19,22 @@ configureViewport({
 })
 
 storiesOf('Page|Welcome', module)
+    .addParameters({
+        options: {
+            selectedAddonPanel: 'storybook-addon-viewport/addon-panel'
+        }
+    })
     .add('welcome', () => ({
         render: h => h(Welcome)
     }));
 
 storiesOf('Page|App', module)
     .addDecorator(StoryRouter({}, router.options))
+    .addParameters({
+        options: {
+            selectedAddonPanel: 'storybook-addon-viewport/addon-panel'
+        }
+    })
     .add('app with router', () => ({
         render: h => h(App)
     }));
@@ -157,6 +167,12 @@ const firstArg = decorate([args => {
 }]);
 
 storiesOf('Addons|Actions', module)
+    .addParameters({
+        options: {
+            addonPanelInRight: true,
+            selectedAddonPanel: 'storybook/actions/actions-panel'
+        }
+    })
     .add('Button: click', () => ({
         template: '<custom-button @click="handleClick" rounded>Click Me!</custom-button>',
         methods: {
@@ -215,6 +231,12 @@ storiesOf('Addons|Actions', module)
     
 storiesOf('Addons|Knobs', module)
     .addDecorator(withKnobs)
+    .addParameters({
+        options: {
+            addonPanelInRight: true,
+            selectedAddonPanel: 'storybooks/storybook-addon-knobs'
+        }
+    })
     .add('Button', () => ({
         props: {
             label: {

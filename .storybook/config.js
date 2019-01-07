@@ -28,7 +28,10 @@ Vue.component('switch-button', SwitchButton);
 
 addDecorator(
     withOptions({
-        hierarchyRootSeparator: /\|/
+        name: 'Storybook + Vue',
+        url: 'https://github.com/janumedia/vue-storybook-example',
+        hierarchyRootSeparator: /\|/,
+        selectedAddonPanel: 'storybook/stories/stories-panel'
     })
 );
 
