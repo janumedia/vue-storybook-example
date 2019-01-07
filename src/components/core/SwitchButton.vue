@@ -35,18 +35,22 @@ export default {
     },
     methods: {
         handleChange(e) {
+            let proxy;
             if(Array.isArray(this.value)) {
-                let proxy = this.value.concat();
+                proxy = this.value.concat();
                 if(e.target.checked) {
                     proxy.push(e.target.value);
                 } else {
                     proxy.splice(proxy.indexOf(e.target.value), 1);
                 }
-                this.$emit('input', proxy);
+            } else if(this.on && this.off) {
+                proxy = e.target.checked ? this.on : this.off;
             } else {
-                this.$emit('input', e.target.type === 'radio' ? e.target.value : e.target.checked);
+                proxy = e.target.checked;
             }
-            this.$emit('change', this);
+
+            this.$emit('input', e.target.type == 'radio' ? e.target.value : proxy);
+            this.$emit('change', e.target.type == 'radio' ? e.target.value : proxy);
         }
     }
 } 
@@ -159,6 +163,10 @@ input[type=checkbox] {
 
     &:disabled, &:disabled + span,
     &:read-only, &:read-only + span {
+        color: $disabled-text;
+        background-color: $disabled;
+        background: lighten(desaturate($secondary, 100%), 20%);
+        color: darken(desaturate($disabled-text, 100%), 40%);
         cursor: not-allowed;
     }
 }

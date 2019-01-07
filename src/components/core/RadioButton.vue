@@ -9,7 +9,7 @@ export default {
     props: ["id", "name", "value"],
     computed: {
         label() {
-            if(this.$slots.default) this.$slots.default[0].text;
+            if(this.$slots.default) return this.$slots.default[0].text;
             else return "";
         },
         selected: {

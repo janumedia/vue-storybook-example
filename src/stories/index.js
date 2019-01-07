@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/vue'
 //import addons
 import { linkTo } from '@storybook/addon-links'
+import { action, decorate } from '@storybook/addon-actions'
 import { configureViewport, INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
 //
@@ -30,10 +31,7 @@ storiesOf('Page|App', module)
 
 storiesOf('Component|Button', module)
     .add('default', () => ({
-        template: '<custom-button @click="handleClick">Default Button</custom-button>',
-        methods: {
-            handleClick: linkTo('CheckBox')
-        }
+        template: '<custom-button>Default Button</custom-button>'
     }))
     .add('rounded', () => ({
         template: '<custom-button rounded>Rounded Button</custom-button>'
@@ -153,7 +151,66 @@ storiesOf('Component|SwitchButton', module)
         `
     }));
 
+// decorate return first argument as new value
+const firstArg = decorate([args => {
+    return Array.isArray(args[0]) ? args[0] : [args[0]]
+}]);
 
+storiesOf('Addons|Actions', module)
+    .add('Button: click', () => ({
+        template: '<custom-button @click="handleClick" rounded>Click Me!</custom-button>',
+        methods: {
+            handleClick: action('click')
+        }
+    }))
+    .add('Checkbox: v-model', () => ({
+        template: `
+            <div>
+                <checkbox id="manggo" v-model="listValues" fill>Manggo</checkbox><br><br>
+                <checkbox id="orange" v-model="listValues" fill>Orange</checkbox>
+            </div>`,
+        data() {
+            return {
+                listValues: []
+            }
+        },
+        watch: firstArg.actions('listValues')
+    }))
+    .add('RadioButton: v-model', () => ({
+        template: `
+            <div>
+                <radio-button v-model="value" id="chrome" name="defaut-radio" fill>Chrome</radio-button><br><br>
+                <radio-button v-model="value" id="safari" name="defaut-radio" fill>Safari</radio-button><br><br>
+                <radio-button v-model="value" id="firefox" name="defaut-radio" fill>Firefox</radio-button>
+            </div>`,
+            data() {
+                return {
+                    value: null
+                }
+            },
+            watch: {
+                value: firstArg.action('value')
+            }
+    }))
+    .add('SwitchButton: input', () => ({
+        template: '<switch-button @input="handleInput" on="Yes" off="No" rounded></switch-button>',
+        methods: {
+            handleInput: action('input')
+        }
+    }))
+    .add('SwitchButton: v-model', () => ({
+        template: '<switch-button v-model="value" on="Yes" off="No" rounded></switch-button>',
+        data() {
+            return {
+                value: null
+            }
+        },
+        watch: {
+            value: firstArg.action('value')
+        }
+    }));
+
+    
 storiesOf('Addons|Knobs', module)
     .addDecorator(withKnobs)
     .add('Button', () => ({
@@ -164,17 +221,17 @@ storiesOf('Addons|Knobs', module)
             },
             rounded: {
                 type: Boolean,
-                default: select('rounded', [false, true])
+                default: boolean('rounded', true)
             },
             primary: {
                 type: Boolean,
-                default: select('primary', [false, true])
+                default: boolean('primary', false)
             },
             disabled: {
                 type: Boolean,
-                default: select('disabled', [false, true])
+                default: boolean('disabled', false)
             },
-            style: {
+            styles: {
                 type: String,
                 default: `font-size:${number('font-size', 16, {
                     range: true,
@@ -184,7 +241,7 @@ storiesOf('Addons|Knobs', module)
                 })}px`
             }
         },
-        template: `<custom-button :style="style" :rounded="rounded" :primary="primary" :disabled="disabled">{{ label }}</custom-button>`
+        template: `<custom-button :style="styles" :rounded="rounded" :primary="primary" :disabled="disabled">{{ label }}</custom-button>`
     }))
     .add('SwitchButton', () => ({
         props: {
@@ -198,13 +255,13 @@ storiesOf('Addons|Knobs', module)
             },
             rounded: {
                 type: Boolean,
-                default: select('rounded', [false, true])
+                default: boolean('rounded', true)
             },
             disabled: {
                 type: Boolean,
-                default: select('disabled', [false, true])
+                default: boolean('disabled', false)
             },
-            style: {
+            styles: {
                 type: String,
                 default: `font-size:${number('font-size', 16, {
                     range: true,
@@ -214,7 +271,7 @@ storiesOf('Addons|Knobs', module)
                 })}px`
             }
         },
-        template: `<switch-button :style="style" :on="on" :off="off" :rounded="rounded" :disabled="disabled"></switch-button>`
+        template: `<switch-button :style="styles" :on="on" :off="off" :rounded="rounded" :disabled="disabled"></switch-button>`
     }))
     .add('Input', () => ({
         props: {
@@ -230,11 +287,7 @@ storiesOf('Addons|Knobs', module)
                 type: String,
                 default: text('suffix', '℉')
             },
-            disabled: {
-                type: Boolean,
-                default: select('disabled', [false, true])
-            },
-            style: {
+            styles: {
                 type: String,
                 default: `font-size:${number('font-size', 16, {
                     range: true,
@@ -244,5 +297,13 @@ storiesOf('Addons|Knobs', module)
                 })}px`
             }
         },
-        template: '<input-text :style="style" :placeholder="placeholder" :prefix="prefix" :suffix="suffix"/>'
+        template: '<input-text :style="styles" :placeholder="placeholder" :prefix="prefix" :suffix="suffix"/>'
+    }));
+
+storiesOf("Addons|Links", module)
+    .add('linkTo', () => ({
+        template: '<custom-button @click="handleClick" rounded>Go to Welcome</custom-button>',
+        methods: {
+            handleClick: linkTo('Welcome', 'welcome')
+        }
     }));
