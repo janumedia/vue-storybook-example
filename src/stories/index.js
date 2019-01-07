@@ -166,7 +166,7 @@ storiesOf('Addons|Actions', module)
     .add('Checkbox: v-model', () => ({
         template: `
             <div>
-                Select your favotite fruit:<br><br>
+                Select your favorite fruit:<br><br>
                 <checkbox id="manggo" v-model="listValues" fill>Manggo</checkbox><br><br>
                 <checkbox id="orange" v-model="listValues" fill>Orange</checkbox>
             </div>`,
@@ -180,6 +180,7 @@ storiesOf('Addons|Actions', module)
     .add('RadioButton: v-model', () => ({
         template: `
             <div>
+                Select the best browser:<br><br>
                 <radio-button v-model="value" id="chrome" name="defaut-radio" fill>Chrome</radio-button><br><br>
                 <radio-button v-model="value" id="safari" name="defaut-radio" fill>Safari</radio-button><br><br>
                 <radio-button v-model="value" id="firefox" name="defaut-radio" fill>Firefox</radio-button>
