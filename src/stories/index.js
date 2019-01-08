@@ -16,7 +16,7 @@ configureViewport({
     viewports: {
         ...INITIAL_VIEWPORTS
     }
-})
+});
 
 storiesOf('Page|Welcome', module)
     .addParameters({
@@ -39,7 +39,7 @@ storiesOf('Page|App', module)
         render: h => h(App)
     }));
 
-storiesOf('Component|Button', module)
+storiesOf('Components|Button', module)
     .add('default', () => ({
         template: '<custom-button>Default Button</custom-button>'
     }))
@@ -62,7 +62,7 @@ storiesOf('Component|Button', module)
         template: '<div><custom-button style="font-size:30px" primary>30px</custom-button><br><br><custom-button style="font-size:40px" primary>40px</custom-button></div>'
     }));
 
-storiesOf('Component|Input', module)
+storiesOf('Components|Input', module)
     .add('default', () => ({
         template: '<input-text/>'
     }))
@@ -87,7 +87,7 @@ storiesOf('Component|Input', module)
         template: '<input-text prefix="💲" suffix="✍️" style="width:300px;"/>'
     }));
 
-storiesOf('Component|Checkbox', module)
+storiesOf('Components|Checkbox', module)
     .add('default', () => ({
         template: `
             <div>
@@ -110,7 +110,7 @@ storiesOf('Component|Checkbox', module)
             </div>`
     }));
 
-storiesOf('Component|RadioButton', module)
+storiesOf('Components|RadioButton', module)
     .add('default', () => ({
         template: `
             <div>
@@ -136,7 +136,7 @@ storiesOf('Component|RadioButton', module)
         `
     }))
 
-storiesOf('Component|SwitchButton', module)
+storiesOf('Components|SwitchButton', module)
     .add('default', () => ({
         template: `<switch-button></switch-button>`
     }))
@@ -228,7 +228,6 @@ storiesOf('Addons|Actions', module)
         }
     }));
 
-    
 storiesOf('Addons|Knobs', module)
     .addDecorator(withKnobs)
     .addParameters({
@@ -331,3 +330,41 @@ storiesOf("Addons|Links", module)
             handleClick: linkTo('Welcome', 'welcome')
         }
     }));
+
+//custom decorator example
+const centerDecorator = (storyFn) => {
+    const story = storyFn();
+    return {
+        components: {story},
+        data(){
+            return {
+                centerWrapper: {
+                    position: 'absolute',
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    display: 'table',
+                    width: '100%',
+                    height: '100vh',
+                    textAlign: 'center',
+                    padding: '0.5em'
+                },
+                center: {
+                    position: 'relative',
+                    display: 'table-cell',
+                    verticalAlign: 'middle',
+                }
+            }
+        },
+        template: '<div :style="{...centerWrapper}"><div :style="{...center}"><story/></div></div>'
+    }
+};
+storiesOf('Customs|Decorator-Centered', module)
+    .addDecorator(centerDecorator)
+    .add('Button', () => ({
+        template: '<custom-button rounded>Centered Button</custom-button>'
+    }))
+    .add('SwitchButton', () => ({
+        template: `<switch-button rounded>Centered</switch-button>`
+    }))
