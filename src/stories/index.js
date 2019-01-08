@@ -255,9 +255,9 @@ storiesOf('Addons|Knobs', module)
                 type: Boolean,
                 default: boolean('disabled', false)
             },
-            styles: {
+            fontSize: {
                 type: String,
-                default: `font-size:${number('font-size', 16, {
+                default: `${number('font-size', 16, {
                     range: true,
                     min: 0,
                     max: 60,
@@ -265,7 +265,7 @@ storiesOf('Addons|Knobs', module)
                 })}px`
             }
         },
-        template: `<custom-button :style="styles" :rounded="rounded" :primary="primary" :disabled="disabled">{{ label }}</custom-button>`
+        template: `<custom-button :style="{ fontSize }" :rounded="rounded" :primary="primary" :disabled="disabled">{{ label }}</custom-button>`
     }))
     .add('SwitchButton', () => ({
         props: {
@@ -285,9 +285,9 @@ storiesOf('Addons|Knobs', module)
                 type: Boolean,
                 default: boolean('disabled', false)
             },
-            styles: {
+            fontSize: {
                 type: String,
-                default: `font-size:${number('font-size', 16, {
+                default: `${number('font-size', 16, {
                     range: true,
                     min: 0,
                     max: 60,
@@ -295,7 +295,7 @@ storiesOf('Addons|Knobs', module)
                 })}px`
             }
         },
-        template: `<switch-button :style="styles" :on="on" :off="off" :rounded="rounded" :disabled="disabled"></switch-button>`
+        template: `<switch-button :style="{ fontSize }" :on="on" :off="off" :rounded="rounded" :disabled="disabled"></switch-button>`
     }))
     .add('Input', () => ({
         props: {
@@ -311,9 +311,9 @@ storiesOf('Addons|Knobs', module)
                 type: String,
                 default: text('suffix', '℉')
             },
-            styles: {
+            fontSize: {
                 type: String,
-                default: `font-size:${number('font-size', 16, {
+                default: `${number('font-size', 16, {
                     range: true,
                     min: 0,
                     max: 60,
@@ -321,7 +321,7 @@ storiesOf('Addons|Knobs', module)
                 })}px`
             }
         },
-        template: '<input-text :style="styles" :placeholder="placeholder" :prefix="prefix" :suffix="suffix"/>'
+        template: '<input-text :style="{ fontSize }" :placeholder="placeholder" :prefix="prefix" :suffix="suffix"/>'
     }));
 
 storiesOf("Addons|Links", module)
