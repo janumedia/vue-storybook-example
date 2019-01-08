@@ -92,13 +92,13 @@ storiesOf('Components|Checkbox', module)
         template: `
             <div>
                 <checkbox id="one">Default One</checkbox><br><br>
-                <checkbox id="two">Default Two</checkbox>
+                <checkbox id="two" checked>Default Two</checkbox>
             </div>`
     }))
     .add('fill', () => ({
         template: `
             <div>
-                <checkbox id="one" fill>Fill One</checkbox><br><br>
+                <checkbox id="one" fill checked>Fill One</checkbox><br><br>
                 <checkbox id="two" fill>Fill Two</checkbox>
             </div>`
     }))
@@ -188,7 +188,7 @@ storiesOf('Addons|Actions', module)
             </div>`,
         data() {
             return {
-                listValues: []
+                listValues: ["Orange"]
             }
         },
         watch: firstArg.actions('listValues')
@@ -331,37 +331,80 @@ storiesOf("Addons|Links", module)
         }
     }));
 
-//custom decorator example
-const centerDecorator = (storyFn) => {
-    const story = storyFn();
+// Writing Stories using Decorators
+// https://storybook.js.org/basics/writing-stories/#using-decorators    
+// custom styles
+const centerWrapper = {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    display: 'table',
+    width: '100%',
+    height: '100vh',
+    textAlign: 'center',
+    padding: '0.5em'
+}
+const center = {
+    position: 'relative',
+    display: 'table-cell',
+    verticalAlign: 'middle',
+}
+
+//custom decorator using story function
+const storyFunction = (storyFn) => {
+    const storyFnWrapper = storyFn();
     return {
-        components: {story},
+        components: {storyFnWrapper},
         data(){
             return {
-                centerWrapper: {
-                    position: 'absolute',
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    display: 'table',
-                    width: '100%',
-                    height: '100vh',
-                    textAlign: 'center',
-                    padding: '0.5em'
-                },
-                center: {
-                    position: 'relative',
-                    display: 'table-cell',
-                    verticalAlign: 'middle',
-                }
+                centerWrapper,
+                center
+            }
+        },
+        template: '<div :style="{...centerWrapper}"><div :style="{...center}"><storyFnWrapper/></div></div>'
+    }
+};
+//custom decorator using story component
+const storyComponent = () => {
+    return {
+        data(){
+            return {
+                centerWrapper: {...centerWrapper, backgroundColor: '#eef'},
+                center
             }
         },
         template: '<div :style="{...centerWrapper}"><div :style="{...center}"><story/></div></div>'
     }
 };
-storiesOf('Customs|Decorator-Centered', module)
-    .addDecorator(centerDecorator)
+//custom decorator using custom vue component
+import AppDecorator from './AppDecorator';
+const vueComponent = () => ({
+    components: {AppDecorator},
+    template: '<app-decorator><story/></app-decorator>'
+});
+
+storiesOf('Customs|Decorator/with story function', module)
+    .addDecorator(storyFunction)
+    .add('Button', () => ({
+        template: '<custom-button rounded>Centered Button</custom-button>'
+    }))
+    .add('SwitchButton', () => ({
+        template: `<switch-button rounded>Centered</switch-button>`
+    }));
+
+storiesOf('Customs|Decorator/with story component', module)
+    .addDecorator(storyComponent)
+    .add('Button', () => ({
+        template: '<custom-button rounded>Centered Button</custom-button>'
+    }))
+    .add('SwitchButton', () => ({
+        template: `<switch-button rounded>Centered</switch-button>`
+    }));
+
+storiesOf('Customs|Decorator/with vue component', module)
+    .addDecorator(vueComponent)
     .add('Button', () => ({
         template: '<custom-button rounded>Centered Button</custom-button>'
     }))
