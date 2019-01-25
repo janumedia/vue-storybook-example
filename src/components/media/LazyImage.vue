@@ -7,17 +7,45 @@
 let observer, options = {
     rootMargin: '0px',
     threshold: 0.1
-};
+}, scrollImages = [];
 
 const registerImage = img => {
+    //load image placeHolder first
+    const image = new Image();
+    image.onload = () => {
+        if('IntersectionObserver' in window) registerObserver(img);
+        //fallback if browser not support IntersectionObserver
+        else registerScrollEvent(img);
+    }
+    image.src = img.src;
+}
+
+const registerObserver = img => {
     //create observer once
     if(!observer) {
         observer = new IntersectionObserver(handleIntersection, options); 
     }
-    //register observer only after placeholder loaded
-    img.onload = () => {
-        img.onload = null;
-        observer.observe(img);
+    observer.observe(img);
+}
+const registerScrollEvent = img => {
+    scrollImages.push(img);
+    if(scrollImages > 1) return;
+    if('addEventListener' in window) {
+        window.addEventListener('scroll', handleScrollEvent);
+        window.addEventListener('resize', handleScrollEvent);
+    } else {
+        window.attachEvent("onscroll", handleScrollEvent);
+        window.attachEvent("onresize", handleScrollEvent);
+    }
+    setTimeout(handleScrollEvent);
+}
+const unregisterScrollEvent = () => {
+    if('removeEventListener' in window) {
+        window.removeEventListener('scroll', handleScrollEvent);
+        window.removeEventListener('resize', handleScrollEvent);
+    } else {
+        window.detachEvent("onscroll", handleScrollEvent);
+        window.detachEvent("onresize", handleScrollEvent);
     }
 }
 const handleIntersection = (entries, observer) => {
@@ -27,6 +55,26 @@ const handleIntersection = (entries, observer) => {
             loadImage(entry.target);
         }
     })
+}
+const handleScrollEvent = () => {
+    if(scrollImages == 0) unregisterScrollEvent();
+    [].slice.call(scrollImages).map(img => {
+        if(intersected(img)) {
+            scrollImages.splice(scrollImages.indexOf(img), 1);
+            loadImage(img);
+        }
+    });
+}
+const intersected = (el, scaleAdjustment) => {
+    const rect = el.getBoundingClientRect();
+    //adjustment is use in case element has scaled using transform:scale
+    scaleAdjustment = scaleAdjustment || 0;
+    return (
+        rect.bottom + scaleAdjustment >= 0 &&
+        rect.right + scaleAdjustment >= 0 &&
+        rect.top - scaleAdjustment <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.left - scaleAdjustment <= (window.innerWidth || document.documentElement.clientWidth)
+    )
 }
 const loadImage = img => {
     const src = img.getAttribute('data-src');
