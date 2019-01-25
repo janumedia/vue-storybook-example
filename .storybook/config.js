@@ -12,6 +12,8 @@ import Checkbox from '@/components/core/Checkbox'
 import RadioButton from '@/components/core/RadioButton'
 import SwitchButton from '@/components/core/SwitchButton'
 
+import LazyImage from '@/components/media/LazyImage'
+
 //setup preview styles
 import '@/assets/css/_normalize.scss'
 
@@ -25,6 +27,8 @@ Vue.component('input-text', Input);
 Vue.component('checkbox', Checkbox);
 Vue.component('radio-button', RadioButton);
 Vue.component('switch-button', SwitchButton);
+
+Vue.component('lazy-image', LazyImage);
 
 addDecorator(
     withOptions({

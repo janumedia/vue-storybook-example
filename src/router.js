@@ -19,6 +19,11 @@ export default new Router({
         component: () => import(/* webpackChunkName: "setup" */ '@/views/Setup.vue')
     },
     {
+      path: '/media',
+        name: 'media',
+        component: () => import(/* webpackChunkName: "setup" */ '@/views/Media.vue')
+    },
+    {
         path: '*',
         name: '404',
         meta: { layout: 'no-nav' },
