@@ -29,7 +29,7 @@ const registerObserver = img => {
 }
 const registerScrollEvent = img => {
     scrollImages.push(img);
-    if(scrollImages > 1) return;
+    if(scrollImages.length > 1) return;
     if('addEventListener' in window) {
         window.addEventListener('scroll', handleScrollEvent);
         window.addEventListener('resize', handleScrollEvent);
