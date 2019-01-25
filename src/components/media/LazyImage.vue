@@ -57,7 +57,7 @@ const handleIntersection = (entries, observer) => {
     })
 }
 const handleScrollEvent = () => {
-    if(scrollImages == 0) unregisterScrollEvent();
+    if(scrollImages.length == 0) unregisterScrollEvent();
     [].slice.call(scrollImages).map(img => {
         if(intersected(img)) {
             scrollImages.splice(scrollImages.indexOf(img), 1);
