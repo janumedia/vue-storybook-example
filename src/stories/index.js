@@ -3,12 +3,14 @@ import { storiesOf } from '@storybook/vue'
 import { linkTo } from '@storybook/addon-links'
 import { action, decorate } from '@storybook/addon-actions'
 import { configureViewport, INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
-import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, number, select, color } from '@storybook/addon-knobs';
 //
 import StoryRouter from 'storybook-vue-router'
 
 import App from '@/App'
 import Welcome from './Welcome'
+
+import Icon, * as Icons from '@/components/media/Icon'
 
 import router from '@/router'
 
@@ -189,6 +191,58 @@ storiesOf('Components|LazyImage', module)
         </div>
         `
     }));
+
+storiesOf('Components|Icon', module)
+    .addDecorator(withKnobs)
+    .addParameters({
+        options: {
+            addonPanelInRight: true,
+            selectedAddonPanel: 'storybooks/storybook-addon-knobs'
+        }
+    })
+    .add('Icon List', () => ({
+        props: {
+            color: {
+                type: String,
+                default: color('color', '#F8E71C')
+            },
+            width: {
+                type: Number,
+                default: number('width', 80, {
+                    range: true,
+                    min: 80,
+                    max: 200,
+                    step: 10
+                })
+            },
+            height: {
+                type: Number,
+                default: number('height', 80, {
+                    range: true,
+                    min: 80,
+                    max: 200,
+                    step: 10
+                })
+            }
+        },
+        render(h) {
+            const iconList = [];
+            Object.keys(Icons).forEach(name => {
+                if(name != 'default') iconList.push(
+                    <div>
+                        {h(Icons[name], {props:{width:this.width, height:this.height, color:this.color}})}
+                        <div>{name}</div>
+                        <br/>
+                    </div>
+                )
+            })
+            return (
+                <div>
+                    {iconList}
+                </div>
+            )
+        }
+    }))
 
 // decorate return first argument as new value
 const firstArg = decorate([args => {
