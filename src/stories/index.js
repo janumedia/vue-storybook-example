@@ -226,19 +226,17 @@ storiesOf('Components|Icon', module)
             }
         },
         render(h) {
-            const iconList = [];
-            Object.keys(Icons).forEach(name => {
-                if(name != 'default') iconList.push(
-                    <div>
-                        {h(Icons[name], {props:{width:this.width, height:this.height, color:this.color}})}
-                        <div>{name}</div>
-                        <br/>
-                    </div>
-                )
-            })
             return (
                 <div>
-                    {iconList}
+                    {Object.keys(Icons).map(iconName => {
+                        if(iconName !== 'default') return(
+                            <div>
+                                {h(Icons[iconName], {props:{width:this.width, height:this.height, color:this.color}})}
+                                <div>{iconName}</div>
+                                <br/>
+                            </div>
+                        )
+                    })}
                 </div>
             )
         }
