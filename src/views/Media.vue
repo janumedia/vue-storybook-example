@@ -1,10 +1,10 @@
 <template>
     <div>
         <div>
-            <icon-google width="30" color="green"/>
-            <icon-facebook width="30" dark/>
-            <icon-twitter width="30" dark/>
-            <icon-instagram width="30" color="black"/>
+            <icon-google-color width="30" height="30"/>
+            <icon-facebook-block-color width="30" height="30"/>
+            <icon-twitter-color width="30" height="30"/>
+            <icon-instagram-color width="30" height="30"/>
         </div>
         <br>
         <div>
@@ -18,11 +18,11 @@
 </template>
 <script>
 import LazyImage from '@/components/media/LazyImage'
-import {IconGoogle, IconFacebook, IconTwitter, IconInstagram} from '@/components/media/Icon'
+import {IconGoogleColor, IconFacebookBlockColor, IconTwitterColor, IconInstagramColor} from '@/components/media/Icon'
 export default {
     components: {
         LazyImage,
-        IconGoogle, IconFacebook, IconTwitter, IconInstagram
+        IconGoogleColor, IconFacebookBlockColor, IconTwitterColor, IconInstagramColor
     }
 }
 </script>
