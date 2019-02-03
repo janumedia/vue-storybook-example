@@ -10,7 +10,7 @@ import StoryRouter from 'storybook-vue-router'
 import App from '@/App'
 import Welcome from './Welcome'
 
-import Icon, * as Icons from '@/components/media/Icon'
+import * as Icons from '@/components/media/Icon'
 
 import router from '@/router'
 
@@ -240,6 +240,23 @@ storiesOf('Components|Icon', module)
                 </div>
             )
         }
+    }));
+
+storiesOf('Components|VideoPlayer', module)
+    .addParameters({
+        options: {
+            selectedAddonPanel: 'storybook-addon-viewport/addon-panel'
+        }
+    })
+    .add('Video default', () => ({
+        template:`
+            <video-player>
+                <source src="https://content.jwplatform.com/videos/q1fx20VZ-kNspJqnJ.mp4" type="video/mp4">
+                <track label="English" kind="subtitles" srclang="en" src="/video/sintel/captions.vtt" default>
+                <track kind="metadata" label="sintel" src="/video/sintel/thumbs.vtt" default>
+                Video Type Not Supported!!!
+            </video-player>
+        `
     }))
 
 // decorate return first argument as new value

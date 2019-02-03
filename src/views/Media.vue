@@ -7,6 +7,13 @@
             <icon-instagram-color width="30" height="30"/>
         </div>
         <br>
+        <VideoPlayer style="width:600px;">
+            <source src="https://content.jwplatform.com/videos/q1fx20VZ-kNspJqnJ.mp4" type="video/mp4">
+            <track label="English" kind="subtitles" srclang="en" src="/video/sintel/captions.vtt" default>
+            <track kind="metadata" label="sintel" src="/video/sintel/thumbs.vtt" default>
+            Video Type Not Supported!!!
+        </VideoPlayer>
+        <br><br>
         <div>
             <lazy-image src="https://firebasestorage.googleapis.com/v0/b/nuxt-web-template.appspot.com/o/slides%2Fpeguyangan-waterfall-3.jpg?alt=media&token=82e2b880-f354-468e-a857-f341a108e239"/><br>
             <lazy-image src="https://firebasestorage.googleapis.com/v0/b/nuxt-web-template.appspot.com/o/slides%2Fklingking-beach.jpg?alt=media&token=0608592e-0bca-43ce-b535-857065b67ef5"/><br>
@@ -19,10 +26,12 @@
 <script>
 import LazyImage from '@/components/media/LazyImage'
 import {IconGoogleColor, IconFacebookBlockColor, IconTwitterColor, IconInstagramColor} from '@/components/media/Icon'
+import VideoPlayer from '@/components/media/VideoPlayer'
 export default {
     components: {
         LazyImage,
-        IconGoogleColor, IconFacebookBlockColor, IconTwitterColor, IconInstagramColor
+        IconGoogleColor, IconFacebookBlockColor, IconTwitterColor, IconInstagramColor,
+        VideoPlayer
     }
 }
 </script>

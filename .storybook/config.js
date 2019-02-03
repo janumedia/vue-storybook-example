@@ -13,6 +13,7 @@ import RadioButton from '@/components/core/RadioButton'
 import SwitchButton from '@/components/core/SwitchButton'
 
 import LazyImage from '@/components/media/LazyImage'
+import VideoPlayer from '@/components/media/VideoPlayer'
 
 //setup preview styles
 import '@/assets/css/_normalize.scss'
@@ -29,6 +30,7 @@ Vue.component('radio-button', RadioButton);
 Vue.component('switch-button', SwitchButton);
 
 Vue.component('lazy-image', LazyImage);
+Vue.component('video-player', VideoPlayer);
 
 addDecorator(
     withOptions({
