@@ -3,8 +3,11 @@ const defaultStyle = {
     display: 'inline-block',
     lineHeight: 1,
     verticalAlign: 'middle',
+    width: '1em',
+    height: '1em',
     fill: '#000'
 }
+
 const Icon = {
     props: {
         width: [Number, String],
@@ -16,10 +19,7 @@ const Icon = {
         },
         color: String
     },
-    mounted() {
-        //console.log(this.props)
-    },
-    render(h) {
+    render() {
         let style = defaultStyle;
         if(this.color) style = {...style, fill: this.color};
         if(this.width) style = {...style, width: isNaN(Number(this.width)) ? this.width : `${this.width}px`};
@@ -37,12 +37,12 @@ const Icon = {
 }
 
 const Wrapper = ({data, slots}) => (
-    <Icon {...data} style={data.data.staticStyle} class={data.data.staticClass}>
+    <Icon {...data} style={data.data.style || data.data.staticStyle} class={data.data.class || data.data.staticClass}>
         {slots().default}
     </Icon>
 )
 
-export default Icon    
+export default Icon
 
 //Audio Video
 //https://github.com/FortAwesome/Font-Awesome
@@ -56,6 +56,16 @@ export const IconPause = props => (
         <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/><path d="M0 0h24v24H0z" fill="none"/>
     </Wrapper>
 )
+export const IconSkipNext = props => (
+    <Wrapper {...props}>
+        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/><path d="M0 0h24v24H0z" fill="none"/>
+    </Wrapper>
+)
+export const IconSkipPrevious = props => (
+    <Wrapper {...props}>
+        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/><path d="M0 0h24v24H0z" fill="none"/>
+    </Wrapper>
+)
 export const IconReplay = props => (
     <Wrapper {...props}>
         <path d="M0 0h24v24H0z" fill="none"/><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
@@ -64,6 +74,11 @@ export const IconReplay = props => (
 export const IconReplay10 = props => (
     <Wrapper {...props}>
         <defs><path id="a" d="M0 0h24v24H0V0z"/></defs><clipPath id="b"><use xlinkHref="#a" overflow="visible"/></clipPath><path d="M12 5V1L7 6l5 5V7c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6H4c0 4.4 3.6 8 8 8s8-3.6 8-8-3.6-8-8-8zm-1.1 11H10v-3.3L9 13v-.7l1.8-.6h.1V16zm4.3-1.8c0 .3 0 .6-.1.8l-.3.6s-.3.3-.5.3-.4.1-.6.1-.4 0-.6-.1-.3-.2-.5-.3-.2-.3-.3-.6-.1-.5-.1-.8v-.7c0-.3 0-.6.1-.8l.3-.6s.3-.3.5-.3.4-.1.6-.1.4 0 .6.1c.2.1.3.2.5.3s.2.3.3.6.1.5.1.8v.7zm-.9-.8v-.5s-.1-.2-.1-.3-.1-.1-.2-.2-.2-.1-.3-.1-.2 0-.3.1l-.2.2s-.1.2-.1.3v2s.1.2.1.3.1.1.2.2.2.1.3.1.2 0 .3-.1l.2-.2s.1-.2.1-.3v-1.5z" clip-path="url(#b)"/>
+    </Wrapper>
+)
+export const IconRepeat = props => (
+    <Wrapper {...props}>
+        <path d="M0 0h24v24H0z" fill="none"/><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
     </Wrapper>
 )
 export const IconVolumeUp = props => (
@@ -94,6 +109,36 @@ export const IconSubtitlesOn = props => (
 export const IconSubtitlesOff = props => (
     <Wrapper {...props}>
         <path fill="none" d="M0 0h24v24H0V0z"/><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm-6-4h8v2h-8z"/>
+    </Wrapper>
+)
+export const IconPlaylistPlay = props => (
+    <Wrapper {...props}>
+        <path fill="none" d="M0 0h24v24H0V0z"/><path d="M4 10h12v2H4zm0-4h12v2H4zm0 8h8v2H4zm10 0v6l5-3z"/>
+    </Wrapper>
+)
+export const IconZoomIn = props => (
+    <Wrapper {...props}>
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path fill="none" d="M0 0h24v24H0V0z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/>
+    </Wrapper>
+)
+export const IconZoomOut = props => (
+    <Wrapper {...props}>
+        <path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM7 9h5v1H7z"/>
+    </Wrapper>
+)
+export const IconZoomOutMap = props => (
+    <Wrapper {...props}>
+        <path d="M15 3l2.3 2.3-2.89 2.87 1.42 1.42L18.7 6.7 21 9V3zM3 9l2.3-2.3 2.87 2.89 1.42-1.42L6.7 5.3 9 3H3zm6 12l-2.3-2.3 2.89-2.87-1.42-1.42L5.3 17.3 3 15v6zm12-6l-2.3 2.3-2.87-2.89-1.42 1.42 2.89 2.87L15 21h6z"/>
+    </Wrapper>
+)
+export const IconZoomInMap = props => (
+    <Wrapper {...props}>
+        <path d="M9.59,14.41l0,6l-2.3,-2.3l-2.87,2.89l-1.42,-1.42l2.89,-2.87l-2.3,-2.3l6,0Zm10.82,0l-2.3,2.3l2.89,2.87l-1.42,1.42l-2.87,-2.89l-2.3,2.3l0,-6l6,0Zm0,-4.82l-2.3,-2.3l2.89,-2.87l-1.42,-1.42l-2.87,2.89l-2.3,-2.3l0,6l6,0Zm-10.82,-6l-2.3,2.3l-2.87,-2.89l-1.42,1.42l2.89,2.87l-2.3,2.3l6,0l0,-6Z"/>
+    </Wrapper>
+)
+export const IconClear = props => (
+    <Wrapper {...props}>
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/><path d="M0 0h24v24H0z" fill="none"/>
     </Wrapper>
 )
 export const IconShare = props => (
