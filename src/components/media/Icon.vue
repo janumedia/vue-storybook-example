@@ -19,7 +19,7 @@ const Icon = {
         },
         color: String
     },
-    render() {
+    render(h) {
         let style = defaultStyle;
         if(this.color) style = {...style, fill: this.color};
         if(this.width) style = {...style, width: isNaN(Number(this.width)) ? this.width : `${this.width}px`};
