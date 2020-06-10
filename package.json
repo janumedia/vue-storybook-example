@@ -61,6 +61,7 @@
   "resolutions": {
     "kind-of": "^6.0.3",
     "acorn": "^6.4.1",
-    "minimist": "^0.2.1"
+    "minimist": "^0.2.1",
+    "websocket-extensions": "^0.1.4"
   }
 }
