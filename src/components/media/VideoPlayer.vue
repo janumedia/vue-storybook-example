@@ -105,6 +105,7 @@ export default {
             }
         },
         handleVideoLoaded(e){
+            this.videoDuration = this.convertTime(this.video.duration);
             this.videoOverlay.setAttribute('data-state', 'hover');
         },
         handlePlaying() {
