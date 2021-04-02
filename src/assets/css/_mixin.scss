@@ -1,0 +1,69 @@
+@mixin translate($valueX, $valueY) {
+    -webkit-transform:translate($valueX, $valueY);
+    -moz-transform:translate($valueX, $valueY);
+    -ms-transform:translate($valueX, $valueY);
+    -o-transform:translate($valueX, $valueY);
+    transform:translate($valueX, $valueY);
+}
+@mixin translateX($value) {
+    -webkit-transform:translateX($value);
+    -moz-transform:translateX($value);
+    -ms-transform:translateX($value);
+    -o-transform:translateX($value);
+    transform:translateX($value);
+}
+@mixin translateY($value) {
+    -webkit-transform:translateY($value);
+    -moz-transform:translateY($value);
+    -o-transform:translateY($value);
+    -ms-transform:translateY($value);
+    transform:translateY($value);
+}
+@mixin rotate($value) {
+    -webkit-transform: rotate($value);
+    -moz-transform: rotate($value);
+    -o-transform: rotate($value);
+    transform: rotate($value);
+}
+@mixin transition($properties...) {
+    -webkit-transition: $properties;
+    -moz-transition: $properties;
+    -ms-transition: $properties;
+    transition: $properties;
+    //fix flickring issue https://goo.gl/7yCcm7
+    //CoreAnimation issue on safari https://stackoverflow.com/a/24469750/1578100
+    //-webkit-transform-style: preserve-3d;
+    //-webkit-transform: translateZ(0);
+    //-webkit-backface-visibility: hidden;
+}
+@mixin transition-duration($value) {
+    -webkit-transition-duration: $value;
+    -moz-transition-duration: $value;
+    -ms-transition-duration:$value;
+    transition-duration: $value;
+}
+@mixin transition-delay($value) {
+    -webkit-transition-delay: $value;
+    -moz-transition-delay: $value;
+    -ms-transition-delay: $value;
+    transition-delay: $value;
+}
+@mixin transition-timing-function($value) {
+    -webkit-transition-timing-function: $value;
+    -moz-transition-timing-function: $value;
+    -ms-transition-timing-function: $value;
+    transition-timing-function: $value;
+}
+@mixin animation($properties...) {
+    -webkit-animation: $properties;
+    -moz-animation: $properties;
+    -ms-animation: $properties;
+    -o-animation: $properties;
+    animation: $properties;
+}
+/*
+@mixin border-radius($properties...) {
+    border-radius: $properties;
+    -webkit-border-radius: $properties;
+    -moz-border-radius: $properties; 
+}*/
