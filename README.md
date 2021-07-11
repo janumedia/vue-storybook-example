@@ -1,6 +1,8 @@
 # vue-storybook-example
 Storybook.js for Vue example
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3bbc08dc-4fda-4263-b558-cd4acfa94825/deploy-status)](https://app.netlify.com/sites/vue-storybook-example/deploys)
+
 [Live Demo](https://vue-storybook-example.netlify.com)
 
 ## Step by step setup
